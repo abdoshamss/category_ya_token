@@ -1,22 +1,36 @@
-import 'package:category/core/cubit/category_cubit.dart';
-import 'package:category/core/cubit/category_state.dart';
-import 'package:category/core/model/category_model.dart';
 import 'package:category/core/widget/home_container.dart';
-import 'package:category/features/electronics/electronics.dart';
+import 'package:category/features/shared/shared_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../core/widget/app_bar.dart';
-
 class HomeScreen extends StatelessWidget {
+
+
   const HomeScreen({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    const List<String > endpoints = [
+      "electronics",
+      "jewelery",
+      "men's%20clothing",
+      "women's%20clothing"
+    ];
+    const List<String> names = [
+      "Electronics",
+      "Jewelery",
+      "men's clothing",
+      "woman's clothing"
+    ];
+    const List<IconData> icons = [
+      Icons.devices_outlined,
+      Icons.diamond_outlined,
+      Icons.boy,
+      Icons.card_giftcard_rounded,
+    ];
     return Scaffold(
-      appBar: appBar(title: "Category"),
+      appBar: appBar(title: "Categories"),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -32,9 +46,9 @@ class HomeScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Electronics(),
+                            builder: (context) =>  SharedScreen(endpoints: endpoints[index],),
                           ));
-                    },
+                    }, name: names[index], index: (index+2), icon: icons[index],
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {

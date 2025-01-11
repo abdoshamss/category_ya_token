@@ -63,9 +63,9 @@ class CustomContainer extends StatelessWidget {
                     const Text(
                       "rating : ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.red),
                     ),
-                    Text(categoryModel.rating.rate.toString()),
+                    Text(categoryModel.rating.rate.toString(),style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                     const Icon(
                       Icons.star,
                       color: Colors.yellow,
@@ -81,9 +81,9 @@ class CustomContainer extends StatelessWidget {
                     const Text(
                       "Price : ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.red),
                     ),
-                    Text(categoryModel.price.toString()),
+                    Text("\$ ${categoryModel.price.toString()}",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                     const Spacer(),
                     Container(
                       width: 38,

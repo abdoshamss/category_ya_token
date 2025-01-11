@@ -37,7 +37,7 @@ class DetailsScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                const Text("rating : ",style: TextStyle(fontWeight: FontWeight.bold),),
+                const Text("Rating : ",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
                 Text(model!.rating.rate.toString()),
                 const Icon(Icons.star,color: Colors.yellow,)
               ],

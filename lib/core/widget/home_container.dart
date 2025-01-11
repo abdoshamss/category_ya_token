@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../model/category_model.dart';
-
 class HomeContainer extends StatelessWidget {
+  final String name;
+  final int index;
+  final IconData icon;
 
   final void Function()? onTap;
-  const HomeContainer({super.key, this.onTap});
+
+  const HomeContainer(
+      {super.key, this.onTap, required this.name, required this.index, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +19,24 @@ class HomeContainer extends StatelessWidget {
         height: 75,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.indigo.shade300),
-        child: const Padding(
-          padding: EdgeInsets.all(10),
+            color: Color(0xff020122 * index)),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
           child: Row(
             children: [
               Text(
-                "Electronics",
-                style: TextStyle(
+                name,
+                style: const TextStyle(
                     fontSize: 25,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),
-              Spacer(),
-              Icon(Icons.tv, size: 35, color: Colors.white,)
+              const Spacer(),
+              Icon(
+                icon,
+                size: 35,
+                color: Colors.white,
+              )
             ],
           ),
         ),
