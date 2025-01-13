@@ -39,7 +39,7 @@ class DrawerWidget extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  SharedScreen(endpoints: endpoints[index],),
+                            builder: (context) =>  SharedScreen(endpoints: endpoints[index], name: names[index],),
                           ));
                     },
                     child: Container(

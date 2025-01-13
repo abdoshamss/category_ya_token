@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  SharedScreen(endpoints: endpoints[index],),
+                            builder: (context) =>  SharedScreen(endpoints: endpoints[index], name: names[index],),
                           ));
                     }, name: names[index], index: (index+2), icon: icons[index],
                   );

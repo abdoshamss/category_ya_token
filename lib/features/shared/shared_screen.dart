@@ -10,35 +10,27 @@ import '../../core/cubit/category_state.dart';
 import '../../core/model/category_model.dart';
 
 class SharedScreen extends StatelessWidget {
-  final String endpoints;
+  final String endpoints,name;
   final int? index;
-  final CategoryModel? categoryModel;
 
   const SharedScreen({
     super.key,
     required this.endpoints,
-    this.index, this.categoryModel,
+    this.index, required this.name,
   });
 
 
   @override
   Widget build(BuildContext context) {
-    const List<String> names = [
-      "Electronics",
-      "Jewelery",
-      "men's clothing",
-      "woman's clothing"
-    ];
     return Scaffold(
       body: BlocProvider(
           create: (context) => CategoryCubit()..getDataCubit(endpoints),
           child: BlocBuilder<CategoryCubit, CategoryState>(
             builder: (context, state) {
-              print(categoryModel?.category);
               if (state is CategorySuccessState) {
                 return Scaffold(
                   drawer: const DrawerWidget(),
-                  appBar: appBar(title: endpoints),
+                  appBar: appBar(title: name),
                   body: Column(
                     children: [
                       Expanded(
