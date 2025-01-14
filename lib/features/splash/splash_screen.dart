@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:category/features/auth/view/auth_register_screen.dart';
+import 'package:category/features/auth/view/login_screen.dart';
 import 'package:category/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(
             builder: (context) =>
-                AuthRegisterScreen()), // Replace with your main screen
+                LoginScreen()), // Replace with your main screen
       );
     });
   }

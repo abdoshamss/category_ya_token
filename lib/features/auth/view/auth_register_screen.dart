@@ -3,6 +3,7 @@ import 'package:category/core/widget/custom_text_field.dart';
 import 'package:category/core/widget/gender.dart';
 import 'package:category/features/auth/cubit/auth_cubit.dart';
 import 'package:category/features/auth/cubit/auth_state.dart';
+import 'package:category/features/auth/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,35 +50,61 @@ class AuthRegisterScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Text("image"),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 2),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 7,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        const Spacer(),
-                        cubit.image == null
-                            ? MaterialButton(
-                            onPressed: () {
-                              print("imaaaaaaaaaage");
-                              cubit.addImage();
-                            },
-                            child: const Icon(
-                              Icons.camera_alt,
-                              size: 35,
-                              color: Colors.red,
-                            ))
-                            : Container(
-                            height: 80,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: FileImage(cubit.image!),
-                                fit: BoxFit.fill,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Text(
+                                cubit.image != null
+                                    ? " Uploaded"
+                                    : " upload your profile image",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: cubit.image != null
+                                        ? Colors.black
+                                        : Colors.red),
                               ),
-                            )),
-                      ],
+                            ),
+                            const Spacer(),
+                            cubit.image == null
+                                ? MaterialButton(
+                                    onPressed: () {
+                                      cubit.addImage();
+                                    },
+                                    child: const Icon(
+                                      Icons.camera_alt,
+                                      size: 35,
+                                      color: Colors.red,
+                                    ))
+                                : Container(
+                                    height: 70,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image: FileImage(cubit.image!),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )),
+                          ],
+                        ),
+                      ),
                     ),
                     CustomTextField(
                       icon: Icons.person,
@@ -126,6 +153,22 @@ class AuthRegisterScreen extends StatelessWidget {
                       height: 15,
                     ),
                     CustomTextField(
+                      obscureText: true,
+                      icon: Icons.password,
+                      label: 'repeat password',
+                      hint: '',
+                      controller: repeatController,
+                      validator: (value) {
+                        return MyValidators.repeatPasswordValidator();
+                      },
+                      onTap: () {
+                        repeatController.clear();
+                      },
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    CustomTextField(
                       icon: Icons.perm_identity,
                       label: 'nationality',
                       hint: '',
@@ -155,37 +198,6 @@ class AuthRegisterScreen extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    CustomTextField(
-                      icon: Icons.token,
-                      label: 'token',
-                      hint: '',
-                      controller: tokenController,
-                      validator: (value) {
-                        return MyValidators.tokenValidator(value);
-                      },
-                      onTap: () {
-                        tokenController.clear();
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    CustomTextField(
-                      obscureText: true,
-                      icon: Icons.password,
-                      label: 'repeat password',
-                      hint: '',
-                      controller: repeatController,
-                      validator: (value) {
-                        return MyValidators.repeatPasswordValidator();
-                      },
-                      onTap: () {
-                        repeatController.clear();
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
                     GenderSelection(genderController: genderController),
                     const SizedBox(
                       height: 20,
@@ -195,7 +207,8 @@ class AuthRegisterScreen extends StatelessWidget {
                       width: 200,
                       child: TextButton(
                         style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Colors.brown),
+                          backgroundColor:
+                              WidgetStatePropertyAll(Colors.indigo),
                         ),
                         onPressed: () {
                           cubit.postDataCubit(
@@ -206,6 +219,11 @@ class AuthRegisterScreen extends StatelessWidget {
                               password: passwordController.text,
                               token: tokenController.text,
                               gender: genderController.text);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ));
                         },
                         child: const Text(
                           "sign up",

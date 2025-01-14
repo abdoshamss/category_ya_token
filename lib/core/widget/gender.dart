@@ -19,14 +19,16 @@ class _GenderSelectionState extends State<GenderSelection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: DropdownButtonFormField<String>(
         decoration: const InputDecoration(
           labelText: 'Gender',
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
         ),
         value: selectedGender,
-        hint: const Text('Select Gender'),
+        hint: const Text('Select Gender',style: TextStyle(color: Colors.grey),),
         isExpanded: true,
         items: genderList.map((String gender) {
           return DropdownMenuItem(
