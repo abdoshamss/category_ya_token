@@ -31,8 +31,13 @@ class AuthRegisterScreen extends StatelessWidget {
           if (state is AuthSuccessState) {
             if (state.userData["status"] == "success") {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  backgroundColor: Colors.indigoAccent,
+                  backgroundColor: Colors.green,
                   content: Text(state.userData["message"])));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginScreen(),
+                  ));
             }
             if (state.userData["status"] == "error") {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -219,11 +224,6 @@ class AuthRegisterScreen extends StatelessWidget {
                               password: passwordController.text,
                               token: tokenController.text,
                               gender: genderController.text);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ));
                         },
                         child: const Text(
                           "sign up",
