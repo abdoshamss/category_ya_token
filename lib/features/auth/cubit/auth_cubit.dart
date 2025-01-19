@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:category/features/auth/model/data_auth/data_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../model/data_auth/data_auth.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -52,5 +52,11 @@ class AuthCubit extends Cubit<AuthState> {
       gender: gender,
     );
     emit(AuthSuccessState(userData: user));
+  }
+  loginCubit({required email, required password}) async {
+    emit(AuthLoadingState());
+    var success =
+    await dataAuth.postDataLogin(email: email, password: password);
+    emit(AuthSuccessState(userData: success));
   }
 }

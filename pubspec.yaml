@@ -40,6 +40,9 @@ dependencies:
   flutter_spinkit: ^5.2.1
   animate_do: ^3.3.4
   image_picker: ^1.0.4
+  device_preview: ^1.0.0
+  flutter_screenutil: ^5.9.3
+  shared_preferences: ^2.3.5
   flutter_bloc: ^8.1.6
   bloc:
 

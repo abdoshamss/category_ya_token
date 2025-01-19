@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/cubit/category_cubit.dart';
 import '../../core/cubit/category_state.dart';
-import '../../core/model/category_model.dart';
 
 class SharedScreen extends StatelessWidget {
   final String endpoints,name;
@@ -29,7 +28,7 @@ class SharedScreen extends StatelessWidget {
             builder: (context, state) {
               if (state is CategorySuccessState) {
                 return Scaffold(
-                  drawer: const DrawerWidget(),
+                  endDrawer: const DrawerWidget(),
                   appBar: appBar(title: name),
                   body: Column(
                     children: [

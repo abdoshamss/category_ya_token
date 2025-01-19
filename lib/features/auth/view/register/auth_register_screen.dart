@@ -1,13 +1,12 @@
 import 'package:category/core/widget/app_bar.dart';
 import 'package:category/core/widget/custom_text_field.dart';
 import 'package:category/core/widget/gender.dart';
-import 'package:category/features/auth/cubit/auth_cubit.dart';
-import 'package:category/features/auth/cubit/auth_state.dart';
-import 'package:category/features/auth/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../core/widget/validate.dart';
+import '../../../../core/widget/validate.dart';
+import '../../cubit/auth_cubit.dart';
+import '../../cubit/auth_state.dart';
+import '../login/login_screen.dart';
 
 class AuthRegisterScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
