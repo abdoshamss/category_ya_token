@@ -8,7 +8,7 @@ class HomeContainer extends StatelessWidget {
   final void Function()? onTap;
 
   const HomeContainer(
-      {super.key, this.onTap, required this.name, required this.index, required this.icon});
+      {super.key, this.onTap, required this.name,  required this.index, required this.icon});
 
   @override
   Widget build(BuildContext context) {

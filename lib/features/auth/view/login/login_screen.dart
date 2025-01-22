@@ -1,3 +1,4 @@
+import 'package:category/core/helper/cache.dart';
 import 'package:category/core/widget/custom_text_field.dart';
 import 'package:category/core/widget/validate.dart';
 import 'package:category/features/layout/layout.dart';
@@ -18,9 +19,10 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is AuthSuccessState) {
             if (state.userData["status"] == "success") {
+              await CacheHelper.setToken(state.userData["user"]["token"]);
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   backgroundColor: Colors.green,
                   content: Text(state.userData["message"])));

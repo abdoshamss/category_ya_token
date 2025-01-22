@@ -1,11 +1,16 @@
+import 'package:category/features/home/home_screen.dart';
+import 'package:category/features/layout/layout.dart';
 import 'package:category/features/shared/shared_screen.dart';
 import 'package:flutter/material.dart';
+
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key,});
+  const DrawerWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const List<String > endpoints = [
+    const List<String> endpoints = [
       "electronics",
       "jewelery",
       "men's%20clothing",
@@ -31,6 +36,41 @@ class DrawerWidget extends StatelessWidget {
             const SizedBox(
               height: 200,
             ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Layout(),
+                    ));
+              },
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.indigo.shade300),
+                child: const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Home",
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: ListView.separated(
                 itemBuilder: (BuildContext context, int index) {
@@ -39,7 +79,10 @@ class DrawerWidget extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  SharedScreen(endpoints: endpoints[index], name: names[index],),
+                            builder: (context) => SharedScreen(
+                              endpoints: endpoints[index],
+                              name: names[index],
+                            ),
                           ));
                     },
                     child: Container(
@@ -47,7 +90,7 @@ class DrawerWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.indigo.shade300),
-                      child:  Padding(
+                      child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: [

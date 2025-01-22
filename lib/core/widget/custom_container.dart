@@ -15,7 +15,7 @@ class CustomContainer extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailsScreen(model: categoryModel),
+              builder: (context) => DetailsScreen(categoryModel: categoryModel,),
             ));
       },
       child: Container(

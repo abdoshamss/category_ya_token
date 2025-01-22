@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'package:category/core/helper/cache.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../auth/view/login/login_screen.dart';
+import '../layout/layout.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,17 +14,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Future handlePush() async {
+    Timer(const Duration(seconds: 3), () {
+      if (CacheHelper.getToken() == null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  LoginScreen()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const Layout()),
+        );
+      }
+    });
+  }
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 7), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                LoginScreen()), // Replace with your main screen
-      );
-    });
+
+    handlePush();
   }
 
   @override

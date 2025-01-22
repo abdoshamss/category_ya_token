@@ -1,3 +1,4 @@
+import 'package:category/core/widget/app_bar.dart';
 import 'package:category/features/profile/cubit/profile_cubit.dart';
 import 'package:category/features/profile/cubit/profile_state.dart';
 import 'package:category/features/profile/view/widget/profile_widget.dart';
@@ -10,10 +11,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("profile"),
-      ),
+      appBar: appBar(title: "profile"),
       body: BlocProvider(
         create: (context) => ProfileCubit()..getProfileCubit(),
         child: BlocConsumer<ProfileCubit, ProfileState>(
@@ -27,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
         }, builder: (context, state) {
           if (state is ProfileSuccess) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -36,7 +34,9 @@ class ProfileScreen extends StatelessWidget {
                     backgroundImage: NetworkImage(state
                         .profileModelUserData.profileUserModel.profileImage),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   Container(
                     height: 60,
                     width: double.infinity,
@@ -50,16 +50,21 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                             "Name : ",
                             style: TextStyle(
-                              color: Colors.red,
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                           Text(
-                              state.profileModelUserData.profileUserModel.name,style: const TextStyle(fontWeight: FontWeight.bold),),
+                            state.profileModelUserData.profileUserModel.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     height: 60,
                     width: double.infinity,
@@ -73,16 +78,21 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                             "Email : ",
                             style: TextStyle(
-                              color: Colors.red,
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                           Text(
-                              state.profileModelUserData.profileUserModel.email,style: TextStyle(fontWeight: FontWeight.bold),),
+                            state.profileModelUserData.profileUserModel.email,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     height: 60,
                     width: double.infinity,
@@ -95,16 +105,22 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           const Text(
                             "Phone : ",
-                            style: TextStyle(color: Colors.red,
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                           Text(
-                              state.profileModelUserData.profileUserModel.phone,style: TextStyle(fontWeight: FontWeight.bold),),
+                            state.profileModelUserData.profileUserModel.phone,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     height: 60,
                     width: double.infinity,
@@ -118,10 +134,15 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                             "National ID : ",
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold,color: Colors.red),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red),
                           ),
                           Text(
-                              state.profileModelUserData.profileUserModel.nationalId,style: TextStyle(fontWeight: FontWeight.bold),),
+                            state.profileModelUserData.profileUserModel
+                                .nationalId,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ],
                       ),
                     ),
@@ -130,7 +151,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             );
           }
-          return const Text("error");
+          return const Center(child: CircularProgressIndicator());
         }),
       ),
     );
