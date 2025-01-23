@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
 
-AppBar appBar({required title,IconData? icon,void Function()? onPressed}) {
+AppBar appBar(
+    {required title,
+    IconData? icon,
+    void Function()? onPressed,
+    IconData? icon1,
+    void Function()? onPressed1}) {
   return AppBar(
-    leading: IconButton( onPressed: onPressed, icon: Icon(icon),),
+    actions: [
+      IconButton(
+          onPressed: onPressed1,
+          icon: Row(
+            children: [
+              Icon(
+                icon1,
+                color: Colors.red.shade200,
+              )
+            ],
+          ))
+    ],
+    iconTheme: IconThemeData(color: Colors.red.shade200),
+    leading: IconButton(
+      onPressed: onPressed,
+      icon: Icon(
+        icon,
+        color: Colors.red.shade200,
+        size: 30,
+      ),
+    ),
     toolbarHeight: 70,
-    backgroundColor: Colors.red.shade200,
+    backgroundColor: Colors.indigo,
     title: Text(title),
     centerTitle: true,
     titleTextStyle: const TextStyle(
-        fontWeight: FontWeight.bold, fontSize: 30, color: Colors.brown),
+        fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white),
   );
 }

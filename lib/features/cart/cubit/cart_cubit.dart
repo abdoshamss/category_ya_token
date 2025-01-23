@@ -13,4 +13,9 @@ class CartCubit extends Cubit<CartState> {
     var success=await cartData.getDataCart();
     emit(CartSuccessState(list: success));
   }
+  updateDataCunit()async{
+    emit(CartLoadingState());
+    var success=await cartData.getDataCart();
+    emit(CartSuccessState(list: success));
+  }
 }

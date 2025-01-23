@@ -11,9 +11,20 @@ class AddCubit extends Cubit<AddState> {
    AddCubit() : super(AddInitial());
 
    AddCartData addCartData=AddCartData();
-   addCartCubit(){
+   addCartCubit({required String id}){
     emit(AddLoadingState());
-    addCartData.addCart();
+    addCartData.addCart(iD: id);
     emit(AddSuccessState());
+  }
+  getAllCubit()async{
+     emit(AddAllLoadingState());
+     var success=await addCartData.getAllDataCart();
+     emit(AddAllSuccessState(list: success));
+  }
+  deleteAllCubit({required String id})async{
+     emit(AddAllLoadingState());
+     var success=await addCartData.deleteDataCart(deleteId: id);
+     emit(DeleteAllLState());
+     getAllCubit();
   }
 }

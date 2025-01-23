@@ -10,3 +10,8 @@ class CartSuccessState extends CartState {
 
   CartSuccessState({required this.list});
 }
+class CartUpdateSuccessState extends CartState {
+  List<CartModel>list;
+
+  CartUpdateSuccessState({required this.list});
+}

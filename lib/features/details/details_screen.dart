@@ -17,7 +17,12 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: 'Details'),
+      appBar: appBar(
+          title: 'Details',
+          icon: Icons.arrow_back_ios,
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: categoryModel != null
@@ -121,7 +126,7 @@ class DetailsScreen extends StatelessWidget {
                                 fontSize: 20),
                           ),
                           Text(
-                            "\$ ${ cartModel?.price?.toString() ?? ""}",
+                            "\$ ${cartModel?.price?.toString() ?? ""}",
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
@@ -145,11 +150,11 @@ class DetailsScreen extends StatelessWidget {
                       )
                     ],
                   )
-                : Center(
+                : const Center(
                     child: Text(
                       'No data available.',
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
       ),

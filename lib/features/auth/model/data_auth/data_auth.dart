@@ -1,3 +1,4 @@
+import 'package:category/core/helper/cache.dart';
 import 'package:dio/dio.dart';
 
 class DataAuth {
@@ -43,6 +44,8 @@ class DataAuth {
         data: {"email": email, "password": password});
     try {
       var data = response.data;
+      var nID=data["user"]["nationalId"];
+      CacheHelper.sharedPreferences.setString("ID", nID);
       print("=======");
       print(data["message"]);
       print("=======");

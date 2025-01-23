@@ -45,6 +45,10 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 100,
             ),
+            HomeContainer(name: "LapTops", index: 0+1, icon: Icons.devices_sharp,onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen(),));
+            },),
+            const SizedBox(height: 25,),
             Expanded(
               child: ListView.separated(
                 itemBuilder: (BuildContext context, int index) {
@@ -72,10 +76,8 @@ class HomeScreen extends StatelessWidget {
                 itemCount: 4,
               ),
             ),
-            const SizedBox(height: 25,),
-           HomeContainer(name: "LapTops", index: 8, icon: Icons.devices_sharp,onTap: (){
-             Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen(),));
-           },)
+
+
           ],
         ),
       ),
@@ -90,7 +92,7 @@ Future<void> showLogout(BuildContext context) async {
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text(
-          'Log out!',
+          'Log out !',
           style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
         ),
         content: const SingleChildScrollView(
