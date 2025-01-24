@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 
 class FavData {
    final Dio dio=Dio();
-  addFav({required String id})async{
+   Future<List<FavModel>>addFav({required String id})async{
     var response= await dio.post("https://elwekala.onrender.com/favorite",data: {
       "nationalId":"01023045678941",
       "productId":id,
@@ -24,8 +24,9 @@ class FavData {
         return error.response!.data;
       }
     }
+    throw response;
   }
-   getFav()async{
+   Future<List<FavModel>>getFav()async{
     var response= await dio.get("https://elwekala.onrender.com/favorite",data: {
       "nationalId":"01023045678941",
     });
@@ -37,6 +38,7 @@ class FavData {
           print(responseData);
         }
         return list;
+
         log(responseData.toString());
       }
     }on DioException catch (error) {
@@ -44,8 +46,10 @@ class FavData {
         return error.response!.data;
       }
     }
+    throw response;
   }
-   deleteDataCart({required String id}) async {
+
+   Future<List<FavModel>>deleteDataCart({required String id}) async {
      var response = await dio
          .delete("https://elwekala.onrender.com/favorite", data: {
        "nationalId":"01023045678941",
@@ -65,6 +69,8 @@ class FavData {
          return error.response!.data;
        }
      }
+     throw "rrrrrrrrrrrrrrr";
    }
+
 
 }

@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(
-              height: 100,
+              height: 70,
             ),
             HomeContainer(name: "LapTops", index: 0+1, icon: Icons.devices_sharp,onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen(),));
@@ -51,6 +51,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 25,),
             Expanded(
               child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return HomeContainer(
                     onTap: () {

@@ -13,6 +13,7 @@ class FavScreen extends StatefulWidget {
 }
 
 class _FavScreenState extends State<FavScreen> {
+  bool isPressed = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,96 +39,83 @@ class _FavScreenState extends State<FavScreen> {
               );
             } else {
               return ListView.separated(
-                  itemBuilder: (context, index) => Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: Container(
-                                height: 150,
-                                width: 360,
+                  itemBuilder: (context, index) => Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(blurRadius: 7, color: Colors.black)
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          blurRadius: 7, color: Colors.black)
-                                    ]),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 15),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                              color: Colors.grey),
-                                          height: 120,
-                                          width: 110,
-                                          child: Image(
-                                              fit: BoxFit.fitWidth,
-                                              image: NetworkImage(
-                                                  state.list[index].image)),
-                                        ),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            state.list[index].name,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 22),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "\$${state.list[index].price}"
-                                                .toString(),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
-                                                color: Colors.orange),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      IconButton(
-                                          onPressed: () {
-                                            FavCubit.get(context)
-                                                .deleteFavCubit(
-                                                    id: state.list[index].id);
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              const SnackBar(
-                                                backgroundColor: Colors.green,
-                                                content: Text(
-                                                  "item successfully deleted",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 20),
-                                                ),
-                                                duration: Duration(seconds: 2),
-                                              ),
-                                            );
-                                          },
-                                          icon: const Icon(
-                                            Icons.favorite,
-                                            color: Colors.red,
-                                          ))
-                                    ],
+                                    color: Colors.grey.shade300,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                                height: 120,
+                                width: 120,
+                                child: Image(
+                                    fit: BoxFit.fitWidth,
+                                    image:
+                                        NetworkImage(state.list[index].image)),
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    state.list[index].name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22),
                                   ),
-                                )),
-                          ),
-                        ],
-                      ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "\$${state.list[index].price}".toString(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Colors.orange),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  FavCubit.get(context)
+                                      .deleteFavCubit(id: state.list[index].id);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.green,
+                                      content: Text(
+                                        "item successfully deleted",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20),
+                                      ),
+                                      duration: Duration(seconds: 2),
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                ))
+                          ],
+                        ),
+                      )),
                   separatorBuilder: (context, index) => const SizedBox(
                         height: 10,
                       ),

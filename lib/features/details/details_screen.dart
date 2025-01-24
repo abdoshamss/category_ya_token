@@ -66,19 +66,20 @@ class DetailsScreen extends StatelessWidget {
             : cartModel != null
                 ? Column(
                     children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 500,
-                          child: CachedNetworkImage(
-                            fit: BoxFit.fill,
-                            imageUrl: cartModel!.image,
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) =>
-                                    CircularProgressIndicator(
-                                        value: downloadProgress.progress),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(15)),
+                        height: 400,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.fitWidth,
+                          imageUrl: cartModel!.image,
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) =>
+                                  CircularProgressIndicator(
+                                      value: downloadProgress.progress),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
                         ),
                       ),
                       const SizedBox(
@@ -147,7 +148,39 @@ class DetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
                         ],
-                      )
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "category : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                                fontSize: 20),
+                          ),
+                          Text(
+                            cartModel?.category ?? "",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "category : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                                fontSize: 20),
+                          ),
+                          Text(
+                            cartModel?.description ?? "",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ],
+                      ),
                     ],
                   )
                 : const Center(

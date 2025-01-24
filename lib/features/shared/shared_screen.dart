@@ -29,7 +29,7 @@ class SharedScreen extends StatelessWidget {
               if (state is CategorySuccessState) {
                 return Scaffold(
                   endDrawer: const DrawerWidget(),
-                  appBar: appBar(title: name),
+                  appBar: appBar(title: name,icon: Icons.arrow_back_ios,onPressed: (){Navigator.pop(context);}),
                   body: Column(
                     children: [
                       Expanded(

@@ -4,9 +4,11 @@ class CartModel {
   final String category;
   final String name;
   final String image;
+  final String description;
   final num price;
 
   CartModel({
+    required this.description,
     required this.image,
     required this.status,
     required this.id,
@@ -21,7 +23,9 @@ class CartModel {
       category: jsonData["category"],
       name: jsonData["name"],
       price: jsonData["price"],
-      status: jsonData["status"], image: jsonData["image"],
+      status: jsonData["status"],
+      image: jsonData["image"],
+      description: jsonData["description"],
     );
   }
 }

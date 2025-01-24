@@ -7,7 +7,7 @@ AppBar appBar(
     IconData? icon1,
     void Function()? onPressed1}) {
   return AppBar(
-    actions: [
+    actions: [if (icon1 != null)
       IconButton(
           onPressed: onPressed1,
           icon: Row(
