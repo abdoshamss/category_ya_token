@@ -50,7 +50,7 @@ class DrawerWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.indigo.shade300),
                 child: const Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: [
                       Text(
@@ -115,7 +115,7 @@ class DrawerWidget extends StatelessWidget {
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(
-                    height: 25,
+                    height: 20,
                   );
                 },
                 itemCount: 4,

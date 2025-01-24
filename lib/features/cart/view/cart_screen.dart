@@ -25,9 +25,10 @@ class CartScreen extends StatelessWidget {
                 return Scaffold(
                   endDrawer: const DrawerWidget(),
                   appBar: appBar(
-
-                    icon1: Icons.favorite,
-                      onPressed1: (){
+                    arrowIcon: Icons.arrow_back_ios,
+                    onPressedArrow: (){Navigator.pop(context);},
+                      icon1: Icons.favorite,
+                      onPressed1: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -49,8 +50,8 @@ class CartScreen extends StatelessWidget {
                         child: ListView.separated(
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
                                 child: CustomCart(
                                     model: state.list[index],
                                     id: state.list[index].id));

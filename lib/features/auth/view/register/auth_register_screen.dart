@@ -48,7 +48,12 @@ class AuthRegisterScreen extends StatelessWidget {
         builder: (context, state) {
           AuthCubit cubit = BlocProvider.of(context);
           return Scaffold(
-            appBar: appBar(title: "Sign Up"),
+            appBar: appBar(
+                title: "Sign Up",
+                icon: Icons.arrow_back_ios,
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
             body: Padding(
               padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(
